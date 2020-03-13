@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     axios.get("/api/confirmed").then(res => {
       setAffectedAreas({ data: res.data });
-
       navigator.geolocation.getCurrentPosition(function(position) {
         setlocation({
           lat: position.coords.latitude,
@@ -23,6 +22,7 @@ function App() {
       });
     });
   }, []);
+
   return (
     <div className="App">
       <div style={{ height: "100vh", width: "100%" }}>
@@ -32,10 +32,12 @@ function App() {
           center={location}
           defaultZoom={1}
         >
-          {affectedAreas.data.map(element => (
+          {affectedAreas.data.map((element, index) => (
             <AffectedArea
+              key={index}
               lat={element.coordinates.lat}
               lng={element.coordinates.long}
+              data={{ country: element.country, history: element.history }}
             />
           ))}
         </GoogleMapReact>
