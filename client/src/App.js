@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import GoogleMapReact from "google-map-react";
 import AffectedArea from "./components/AffectedArea/AffectedArea";
 import secret from "./secret";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    axios.get("/api/confirmed").then(res => console.log(res));
+  }, []);
   return (
     <div className="App">
       <div style={{ height: "100vh", width: "100%" }}>
