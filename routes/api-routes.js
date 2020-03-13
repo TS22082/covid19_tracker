@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const covidTrackingController = require("../controllers/covidTracking");
-const axios = require("axios");
 
 // type: GET
 // route: api/confirmed
