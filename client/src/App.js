@@ -8,11 +8,13 @@ import secret from "./secret";
 import "./App.css";
 
 function App() {
-  const [location, setlocation] = useState({ lat: 0, lng: 0 });
+  const [location, setlocation] = useState({});
+  const [affectedAreas, setAffectedAreas] = useState({ data: [] });
 
   useEffect(() => {
     axios.get("/api/confirmed").then(res => {
-      console.log(res);
+      setAffectedAreas({ data: res.data });
+
       navigator.geolocation.getCurrentPosition(function(position) {
         setlocation({
           lat: position.coords.latitude,
@@ -30,7 +32,12 @@ function App() {
           center={location}
           defaultZoom={1}
         >
-          <AffectedArea lat={59.955413} lng={30.337844} />
+          {affectedAreas.data.map(element => (
+            <AffectedArea
+              lat={element.coordinates.lat}
+              lng={element.coordinates.long}
+            />
+          ))}
         </GoogleMapReact>
       </div>
     </div>
