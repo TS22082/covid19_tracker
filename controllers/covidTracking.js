@@ -1,5 +1,7 @@
 const axios = require("axios");
 
+// docs for api: https://github.com/ExpDev07/coronavirus-tracker-api
+
 module.exports = {
   getConfirmedCases: function(req, res) {
     axios
