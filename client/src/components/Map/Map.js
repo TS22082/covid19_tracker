@@ -22,7 +22,7 @@ function Map() {
   }, []);
 
   return (
-    <div style={{ height: "95vh", width: "100%" }}>
+    <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: secret.GOOGLE_KEY }}
         defaultCenter={{ lat: 26.8206, lng: 17.2283 }}
