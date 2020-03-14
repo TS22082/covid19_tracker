@@ -1,8 +1,8 @@
-import secret from "../../secret";
 import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import React, { useEffect, useState } from "react";
 
+import secret from "../../secret";
 import AffectedArea from "../AffectedArea/AffectedArea";
 
 function Map() {
@@ -22,7 +22,7 @@ function Map() {
   }, []);
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "90vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: secret.GOOGLE_KEY }}
         defaultCenter={{ lat: 26.8206, lng: 17.2283 }}

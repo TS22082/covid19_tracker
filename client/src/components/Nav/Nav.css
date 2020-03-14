@@ -1,0 +1,29 @@
+.nav {
+  height: 10vh;
+  background-color: #34495e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav h1 {
+  color: white;
+  margin-left: 40px;
+}
+
+nav {
+  margin-right: 40px;
+}
+
+nav p {
+  display: inline-block;
+}
+
+nav p:not(:last-child) {
+  margin-right: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
