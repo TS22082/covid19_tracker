@@ -1,12 +1,14 @@
 import React from "react";
-import "./Nav.css";
 import { Link } from "react-router-dom";
+
+import "./Nav.css";
+
 function Nav() {
   return (
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
+      <Link to="/" class="navbar-brand">
         Covid-19
-      </a>
+      </Link>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,10 +22,10 @@ function Nav() {
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <Link to="/" class="nav-item nav-link" href="#">
+          <Link to="/" class="nav-item nav-link">
             Map
           </Link>
-          <Link to="/news" class="nav-item nav-link" href="#">
+          <Link to="/news" class="nav-item nav-link">
             News
           </Link>
         </div>
