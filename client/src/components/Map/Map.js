@@ -9,8 +9,6 @@ function Map() {
   const [affectedAreas, setAffectedAreas] = useState({ data: [] });
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_MAP_KEY);
-
     axios.get("/api/confirmed").then(res => {
       setAffectedAreas({ data: res.data });
       navigator.geolocation.getCurrentPosition(function(position) {
