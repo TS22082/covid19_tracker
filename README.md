@@ -15,3 +15,10 @@ module.exports = {
 ```javascript
 NEWS_KEY = your_news_key_goes_here;
 ```
+
+This app integrates:
+https://github.com/ExpDev07/coronavirus-tracker-api
+
+google maps api
+
+open news api
