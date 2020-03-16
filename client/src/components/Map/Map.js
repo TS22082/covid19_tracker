@@ -2,10 +2,7 @@ import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import React, { useEffect, useState } from "react";
 import secret from "../../secret";
-// import secret from "../../secret";
 import AffectedArea from "../AffectedArea/AffectedArea";
-
-require("dotenv").config();
 
 function Map() {
   const [location, setlocation] = useState({});
