@@ -22,7 +22,12 @@ function News() {
                   {article.source.name}
                 </h6>
                 <p className="card-text">{article.content}</p>
-                <a href={article.url} target="_blank" className="card-link">
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-link"
+                >
                   Article link
                 </a>
               </div>
