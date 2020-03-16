@@ -5,12 +5,12 @@ import "./Nav.css";
 
 function Nav() {
   return (
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <Link to="/" class="navbar-brand">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <Link to="/" className="navbar-brand">
         Covid-19
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNavAltMarkup"
@@ -18,14 +18,14 @@ function Nav() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-          <Link to="/" class="nav-item nav-link">
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav ml-auto">
+          <Link to="/" className="nav-item nav-link">
             Map
           </Link>
-          <Link to="/news" class="nav-item nav-link">
+          <Link to="/news" className="nav-item nav-link">
             News
           </Link>
         </div>
