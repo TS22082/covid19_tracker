@@ -2,8 +2,10 @@ import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import React, { useEffect, useState } from "react";
 
-import secret from "../../secret";
+// import secret from "../../secret";
 import AffectedArea from "../AffectedArea/AffectedArea";
+
+require("dotenv").config();
 
 function Map() {
   const [location, setlocation] = useState({});
@@ -24,7 +26,7 @@ function Map() {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.MAP_KEY || secret.GOOGLE_KEY }}
+        bootstrapURLKeys={{ key: process.env.MAP_KEY }}
         defaultCenter={{ lat: 26.8206, lng: 17.2283 }}
         center={location}
         defaultZoom={1}
