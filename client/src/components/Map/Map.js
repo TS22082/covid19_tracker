@@ -28,15 +28,15 @@ function Map() {
         center={location}
         defaultZoom={1}
       >
-        {affectedAreas.data.map((element, index) => (
-          <AffectedArea
-              size="50"
-            key={index}
-            lat={element.coordinates.lat}
-            lng={element.coordinates.long}
-            data={{ country: element.country, history: element.history }}
-          />
-        ))}
+        {affectedAreas.data.map((element, index) => {
+            console.log(element);
+            return <AffectedArea
+                key={index}
+                lat={element.coordinates.lat}
+                lng={element.coordinates.long}
+                data={{ country: element.country, history: element.history, latest: element.latest }}
+            />
+        })}
       </GoogleMapReact>
     </div>
   );
