@@ -7,7 +7,23 @@ module.exports = {
   getConfirmedCases: function(req, res) {
     axios
       .get("https://coronavirus-tracker-api.herokuapp.com/confirmed")
-      .then(confirmedCases => res.json(confirmedCases.data.locations))
+      .then(confirmedCases => {
+          confirmedCases.data.locations.map(location => {
+              const { coordinates } = location;
+              axios
+                  .get('https://maps.googleapis.com/maps/api/geocode/json',
+                      {
+                      latlng: `${coordinates.lat},${coordinates.long}`,
+                      key: process.env.REACT_APP_MAP_KEY
+                  })
+                  .then(response => {
+                      console.log()
+                  })
+                  .catch(err => res.send(err));
+          });
+
+          return res.json(confirmedCases.data.locations)
+      })
       .catch(err => res.send(err));
   }
 };

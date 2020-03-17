@@ -2,7 +2,8 @@ import React from "react";
 import "./AffectedArea.css";
 
 function AffectedArea() {
-  return <div className="dot"></div>;
+    const { size } = this.props;
+    return <div className="dot" style={{ width: size, height: size }></div>;
 }
 
 export default AffectedArea;

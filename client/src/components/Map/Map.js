@@ -30,6 +30,7 @@ function Map() {
       >
         {affectedAreas.data.map((element, index) => (
           <AffectedArea
+              size="50"
             key={index}
             lat={element.coordinates.lat}
             lng={element.coordinates.long}
