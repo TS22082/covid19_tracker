@@ -1,13 +1,11 @@
 # Setup
 
-- Create a secret.js file in the src folder:
+- Create a .env file in the client folder:
 
-/client/src/secret.js
+/client/.env
 
 ```javascript
-module.exports = {
-  MAP_KEY: "your_google_maps_key_goes_here"
-};
+REACT_APP_MAP_KEY = your_google_maps_key_goes_here;
 ```
 
 - Create a .env in the root folder (no quotes)
