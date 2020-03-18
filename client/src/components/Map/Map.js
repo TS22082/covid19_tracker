@@ -37,6 +37,7 @@ function Map() {
             affectedAreas.data.map((element, index) => {
                 if (element.country_code === 'US') {
                     console.log('US');
+                    console.log(element.geo);
                 }
                 return <AffectedArea
                     key={index}

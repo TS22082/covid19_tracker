@@ -7,8 +7,8 @@ function AffectedArea(props) {
     return <div className="dot" style={{
         width: `${size}px`,
         height: `${size}px`,
-        'background-color': 'rgba(255,0,0,0.2)',
-        'border-color': 'rgba(255,0,0,1.0)'
+        backgroundColor: 'rgba(255,0,0,0.2)',
+        border: '1px solid rgba(255,0,0,1.0)'
     }}>&nbsp;</div>;
 }
 
