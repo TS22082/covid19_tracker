@@ -7,7 +7,6 @@ import AffectedArea from "../AffectedArea/AffectedArea";
 function Map() {
   const [location, setlocation] = useState({});
   const [affectedAreas, setAffectedAreas] = useState({ data: [] });
-
   useEffect(() => {
     axios.get("/api/confirmed").then(res => {
       setAffectedAreas({ data: res.data });
@@ -20,6 +19,10 @@ function Map() {
     });
   }, []);
 
+    const handleApiLoaded = (map, maps) => {
+        window.map = map;
+    };
+
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
@@ -27,16 +30,22 @@ function Map() {
         defaultCenter={{ lat: 26.8206, lng: 17.2283 }}
         center={location}
         defaultZoom={1}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
-        {affectedAreas.data.map((element, index) => {
-            console.log(element);
-            return <AffectedArea
-                key={index}
-                lat={element.coordinates.lat}
-                lng={element.coordinates.long}
-                data={{ country: element.country, history: element.history, latest: element.latest }}
-            />
-        })}
+        {
+            affectedAreas.data.map((element, index) => {
+                if (element.country_code === 'US') {
+                    console.log('US');
+                }
+                return <AffectedArea
+                    key={index}
+                    lat={element.coordinates.lat}
+                    lng={element.coordinates.long}
+                    data={{ country: element.country, history: element.history, latest: element.latest }}
+                />
+        }
+        )}
       </GoogleMapReact>
     </div>
   );
