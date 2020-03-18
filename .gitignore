@@ -3,4 +3,3 @@ package-lock.json
 client/src/secret.js
 .env
 .idea
-data/*
