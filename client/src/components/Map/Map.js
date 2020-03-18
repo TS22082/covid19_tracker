@@ -7,7 +7,6 @@ import AffectedArea from "../AffectedArea/AffectedArea";
 function Map() {
   const [location, setlocation] = useState({});
   const [affectedAreas, setAffectedAreas] = useState({ data: [] });
-
   useEffect(() => {
     axios.get("/api/confirmed").then(res => {
       setAffectedAreas({ data: res.data });
@@ -20,6 +19,23 @@ function Map() {
     });
   }, []);
 
+    const handleApiLoaded = (map, maps) => {
+        affectedAreas.data.forEach(element => {
+            if (element.country_code === 'US') {
+                if (element.county && element.state) {
+                    map.data.loadGeoJson(`/api/geojson?county=${element.county}`);
+                }
+            }
+        });
+        map.data.setStyle(function(feature) {
+            return /** @type {!google.maps.Data.StyleOptions} */({
+                fillColor: 'red',
+                strokeColor: 'red',
+                strokeWeight: 2
+            });
+        });
+    };
+
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
@@ -27,15 +43,19 @@ function Map() {
         defaultCenter={{ lat: 26.8206, lng: 17.2283 }}
         center={location}
         defaultZoom={1}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
-        {affectedAreas.data.map((element, index) => (
-          <AffectedArea
-            key={index}
-            lat={element.coordinates.lat}
-            lng={element.coordinates.long}
-            data={{ country: element.country, history: element.history }}
-          />
-        ))}
+        {
+            affectedAreas.data.map((element, index) => {
+                return <AffectedArea
+                    key={index}
+                    lat={element.coordinates.lat}
+                    lng={element.coordinates.long}
+                    data={{ country: element.country, history: element.history, latest: element.latest }}
+                />
+        }
+        )}
       </GoogleMapReact>
     </div>
   );
