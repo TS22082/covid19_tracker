@@ -8,18 +8,27 @@ module.exports = {
         const casesData = await axios.get("https://coronavirus-tracker-api.herokuapp.com/confirmed");
         const confirmedCases = await Promise.all(casesData.data.locations.map(async location => {
             if (location.country_code === 'US') {
-                const { coordinates } = location;
-                const reverseGeocode = await axios.get(
-                    'https://maps.googleapis.com/maps/api/geocode/json',
-                    {
-                        params: {
-                            latlng: `${coordinates.lat},${coordinates.long}`,
-                            key: process.env.REACT_APP_MAP_KEY
-                        }
+                if (location.province.split(',').length===2) {
+                    let [region, state] = location.province.split(',');
+                    state = state.trim();
+                    let matches = region.match(/^(.+) County$/);
+                    if (matches) {
+                        region = matches[1];
                     }
-                );
-                console.log(reverseGeocode.data);
-                location.geo = reverseGeocode.data;
+                    console.log(region);
+                    console.log(state);
+                }
+                // const { coordinates } = location;
+                // const reverseGeocode = await axios.get(
+                //     'https://api.opencagedata.com/geocode/v1/json',
+                //     {
+                //         params: {
+                //             q: `${coordinates.lat}+${coordinates.long}`,
+                //             key: process.env.OPENCAGE_API_KEY
+                //         }
+                //     }
+                // );
+                // location.geo = reverseGeocode.data;
             }
             return location;
         }));
