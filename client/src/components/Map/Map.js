@@ -20,13 +20,19 @@ function Map() {
   }, []);
 
     const handleApiLoaded = (map, maps) => {
-        window.map = map;
         affectedAreas.data.forEach(element => {
             if (element.country_code === 'US') {
-                if (element.county) {
-                    window.map.data.loadGeoJson(`/api/geojson?county=${element.county}`);
+                if (element.county && element.state) {
+                    map.data.loadGeoJson(`/api/geojson?county=${element.county}`);
                 }
             }
+        });
+        map.data.setStyle(function(feature) {
+            return /** @type {!google.maps.Data.StyleOptions} */({
+                fillColor: 'red',
+                strokeColor: 'red',
+                strokeWeight: 2
+            });
         });
     };
 
