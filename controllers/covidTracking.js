@@ -15,8 +15,8 @@ module.exports = {
                     if (matches) {
                         region = matches[1];
                     }
-                    console.log(region);
-                    console.log(state);
+                    location.state = state;
+                    location.county = region;
                 }
                 // const { coordinates } = location;
                 // const reverseGeocode = await axios.get(

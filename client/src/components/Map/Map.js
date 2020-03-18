@@ -21,6 +21,13 @@ function Map() {
 
     const handleApiLoaded = (map, maps) => {
         window.map = map;
+        affectedAreas.data.forEach(element => {
+            if (element.country_code === 'US') {
+                if (element.county) {
+                    window.map.data.loadGeoJson(`/api/geojson?county=${element.county}`);
+                }
+            }
+        });
     };
 
   return (
@@ -35,10 +42,6 @@ function Map() {
       >
         {
             affectedAreas.data.map((element, index) => {
-                if (element.country_code === 'US') {
-                    console.log('US');
-                    console.log(element.geo);
-                }
                 return <AffectedArea
                     key={index}
                     lat={element.coordinates.lat}
