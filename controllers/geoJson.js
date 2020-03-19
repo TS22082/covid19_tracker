@@ -1,10 +1,28 @@
-const us_regions_geojson = require("../data/gz_2010_us_050_00_5m");
+const fs = require('fs');
+const url = require('url');
+const querystring = require('querystring');
 
 module.exports = {
     getGeoJson: function(req, res) {
-        let found = us_regions_geojson.features.find(region => {
-            return region.properties.NAME === req.query.county
-        });
-        res.json(found);
+        const geoJsonPath = 'data/world.geo.json/countries';
+        let { country, state, county, region } = req.query;
+        let geoJson;
+        if (country === 'US') country = 'USA';
+        if (country === 'USA') {
+            if (state) {
+                if (county) {
+                    const filePath = `${geoJsonPath}/${country}/${state}/${county}.geo.json`;
+                    const readStream = fs.createReadStream(filePath, 'utf8');
+                    res.writeHead(200, {'Content-Type': 'application/json'});
+                    readStream.on('data', chunk => {
+                        res.write(chunk);
+                    }).on('end', () =>  {
+                        res.end();
+                    });
+                }
+            }
+        } else {
+            res.status(404).send('Not found');
+        }
     }
 };
