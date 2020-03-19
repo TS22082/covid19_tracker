@@ -27,7 +27,6 @@ function News() {
         <div className="container mt-5">
           <div className="row">
             <div className="col-sm-12">
-              {/* Search form goes here */}
               <div className="input-group input-group-lg mt-3">
                 <input
                   type="text"
@@ -47,7 +46,6 @@ function News() {
                   </button>
                 </div>
               </div>
-              {/* news articles belong here after search */}
               {articles.map((article, index) => (
                 <div className="card mt-2" key={index}>
                   <div className="card-body">

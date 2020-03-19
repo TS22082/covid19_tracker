@@ -19,6 +19,9 @@ router.route("/news").get(newsController.getNews);
 // get topics based on search around covid-19
 router.route("/news/search/:search").get(newsController.search);
 
+// type: GET
+// route: api/geojson
+// get geolocation data for map county styling
 router.route("/geojson").get(geoJsonController.getGeoJson);
 
 module.exports = router;
