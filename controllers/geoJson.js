@@ -12,17 +12,20 @@ module.exports = {
             if (state) {
                 if (county) {
                     const filePath = `${geoJsonPath}/${country}/${state}/${county}.geo.json`;
-                    const readStream = fs.createReadStream(filePath, 'utf8');
-                    res.writeHead(200, {'Content-Type': 'application/json'});
-                    readStream.on('data', chunk => {
-                        res.write(chunk);
-                    }).on('end', () =>  {
-                        res.end();
+                    fs.access(filePath, fs.constants.F_OK, (err) => {
+                        if (err) {
+                            res.status(404).send('Not found').end();
+                        } else {
+                            let geoJson = JSON.parse(fs.readFileSync(filePath));
+                            geoJson.features[0].geometry.coordinates[0][0]
+                                .push(geoJson.features[0].geometry.coordinates[0][0][0]);
+                            res.json(geoJson);
+                        }
                     });
                 }
             }
         } else {
-            res.status(404).send('Not found');
+            res.status(404).send('Not found').end();
         }
     }
 };

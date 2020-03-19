@@ -21,9 +21,10 @@ function Map() {
 
     const handleApiLoaded = (map, maps) => {
         affectedAreas.data.forEach(element => {
-            if (element.country_code === 'US') {
-                if (element.county && element.state) {
-                    map.data.loadGeoJson(`/api/geojson?county=${element.county}`);
+            let { country_code: country, state, county } = element;
+            if (country === 'US') {
+                if (county && state) {
+                    map.data.loadGeoJson(`/api/geojson?country=${country}&state=${state}&county=${county}`);
                 }
             }
         });

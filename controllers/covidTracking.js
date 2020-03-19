@@ -11,7 +11,7 @@ module.exports = {
                 if (location.province.split(',').length===2) {
                     let [region, state] = location.province.split(',');
                     state = state.trim();
-                    let matches = region.match(/^(.+) County$/);
+                    let matches = region.match(/^(.+) (County|Parish)$/);
                     if (matches) {
                         region = matches[1];
                     }
