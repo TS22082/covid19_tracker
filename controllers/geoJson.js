@@ -5,7 +5,7 @@ const querystring = require('querystring');
 module.exports = {
     getGeoJson: function(req, res) {
         const geoJsonPath = 'data/world.geo.json/countries';
-        let { country, state, county, region } = req.query;
+        let {country, state, county, region} = req.query;
         let geoJson;
         if (country === 'US') country = 'USA';
         if (country === 'USA') {

@@ -24,7 +24,15 @@ function Map() {
             let { country_code: country, state, county } = element;
             if (country === 'US') {
                 if (county && state) {
-                    map.data.loadGeoJson(`/api/geojson?country=${country}&state=${state}&county=${county}`);
+                    const geoJsonUrl = `/api/geojson?country=${country}&state=${state}&county=${county}`;
+                    try {
+                        map.data.loadGeoJson(geoJsonUrl);
+                    } catch (e) {
+                        console.log(e);
+                    }
+                } else if (state) {
+                    const geoJsonUrl = `/api/geojson?country=${country}&state=${state}`;
+                    map.data.loadGeoJson(geoJsonUrl);
                 }
             }
         });
