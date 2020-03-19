@@ -56,25 +56,38 @@ function News() {
                   </button>
                 </div>
               </div>
-              {articles.map((article, index) => (
-                <div className="card mt-2" key={index}>
+
+              {articles.length > 0 ? (
+                articles.map((article, index) => (
+                  <div className="card mt-2" key={index}>
+                    <div className="card-body">
+                      <h5 className="card-title">{article.title}</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
+                        {article.source.name}
+                      </h6>
+                      <p className="card-text">{article.content}</p>
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="card-link"
+                      >
+                        Article link
+                      </a>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="card mt-2">
                   <div className="card-body">
-                    <h5 className="card-title">{article.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      {article.source.name}
-                    </h6>
-                    <p className="card-text">{article.content}</p>
-                    <a
-                      href={article.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="card-link"
-                    >
-                      Article link
-                    </a>
+                    <h5 className="card-title">Nothing found</h5>
+                    <p className="card-text">
+                      There was nothing found based on your search terms and
+                      covid-19. Try another search term.
+                    </p>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
