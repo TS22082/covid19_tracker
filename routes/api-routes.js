@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const covidTrackingController = require("../controllers/covidTracking");
 const newsController = require("../controllers/news");
-const geoJsonController = require('../controllers/geoJson');
+const geoJsonController = require("../controllers/geoJson");
 
 // type: GET
 // route: api/confirmed
@@ -14,6 +14,11 @@ router.route("/confirmed").get(covidTrackingController.getConfirmedCases);
 // get all the top headlines related to covid-19
 router.route("/news").get(newsController.getNews);
 
-router.route('/geojson').get(geoJsonController.getGeoJson);
+// type: GET
+// route: api/news/search
+// get topics based on search around covid-19
+router.route("/news/search/:search").get(newsController.search);
+
+router.route("/geojson").get(geoJsonController.getGeoJson);
 
 module.exports = router;
