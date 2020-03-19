@@ -19,6 +19,15 @@ function News() {
     setSearch(e.target.value);
   }
 
+  function searchApi(text) {
+    setLoading({ loaded: false });
+    axios.get(`api/news/search/${text}`).then(res => {
+      setArticles(res.data.articles);
+      setLoading({ loaded: true });
+      setSearch("");
+    });
+  }
+
   return (
     <div>
       {!loading.loaded ? (
@@ -41,6 +50,7 @@ function News() {
                     className="btn btn-outline-secondary"
                     type="button"
                     id="button-addon2"
+                    onClick={() => searchApi(search)}
                   >
                     Search
                   </button>
