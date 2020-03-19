@@ -1,6 +1,4 @@
 node_modules
 package-lock.json
-client/src/secret.js
 .env
 .idea
-data/*
