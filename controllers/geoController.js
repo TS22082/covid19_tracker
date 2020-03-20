@@ -1,5 +1,4 @@
 const querystring = require('querystring');
-const axios = require('axios');
 const db = require('../config/mysql.js');
 
 module.exports = {
