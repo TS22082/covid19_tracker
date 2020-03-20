@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2');
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -7,5 +7,4 @@ const db = mysql.createConnection({
     password: process.env.MYSQL_PASS,
     database: 'covid19'
 });
-
 module.exports = db;

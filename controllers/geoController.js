@@ -9,20 +9,29 @@ module.exports = {
         let queryParts = [];
         if (country) {
             table = 'countries';
-            queryParts.push(`country = '${country}'`);
+            queryParts.push(`countryCode = '${country}'`);
             if (country === 'US') {
                 if (state) {
                     table = 'states';
-                    queryParts.push(`country = '${state}'`);
+                    queryParts.push(`state = '${state}'`);
                     if (county) {
                         table = 'counties';
                         queryParts.push(`county = '${county}'`);
                     }
                 }
             }
-            const query = `SELECT geojson FROM ${table} WHERE ${queryParts.join(' AND ')}`;
-            console.log(query);
-            // db.query(query);
+            const query = `SELECT json AS geojson FROM ${table} `+
+                `INNER JOIN geojson ON fk_geojson = geojson.id `+
+                `WHERE ${queryParts.join(' AND ')}`;
+            db.execute(query, null, (err, results, fields) => {
+                if (err) {
+                    console.log('ERROR', err);
+                    res.end();
+                }
+                const geoJson = results[0].geojson
+                res.json(geoJson);
+                res.end();
+            });
         }
     }
 };
