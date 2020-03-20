@@ -31,8 +31,15 @@ function Map() {
                         console.log(e);
                     }
                 } else if (state) {
-                    const geoJsonUrl = `/api/geojson?country=${country}&state=${state}`;
+                    const geoJsonUrl = `/api/geo/json?country=${country}&state=${state}`;
                     map.data.loadGeoJson(geoJsonUrl);
+                }
+            } else {
+                const geoJsonUrl = `/api/geo/json?country=${country}`;
+                try {
+                    map.data.loadGeoJson(geoJsonUrl);
+                } catch (e) {
+                    console.log(e);
                 }
             }
         });
