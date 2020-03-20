@@ -8,8 +8,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //routes
-const apiRoutes = require("./routes/api-routes");
-app.use("/api", apiRoutes);
+// const apiRoutes = require("./routes/apiRoutes");
+// app.use("/api", apiRoutes);
+const routes = require('./routes');
+app.use(routes);
 
 // prepares for heroku deployment after build is created
 if (process.env.NODE_ENV === "production") {
