@@ -6,23 +6,23 @@ module.exports = {
     getGeoJson: async (req, res) => {
         const { country, county, city, state, region } = req.query;
         let table;
-        let queryParts = [];
+        let whereClause;
         if (country) {
             table = 'countries';
-            queryParts.push(`countryCode = '${country}'`);
+            whereClause = `countryCode = '${country}'`;
             if (country === 'US') {
                 if (state) {
                     table = 'states';
-                    queryParts.push(`state = '${state}'`);
+                    whereClause = `state = '${state}'`;
                     if (county) {
                         table = 'counties';
-                        queryParts.push(`county = '${county}'`);
+                        whereClause = `state = '${state}' AND county = '${county}'`;
                     }
                 }
             }
             const query = `SELECT json AS geojson FROM ${table} `+
                 `INNER JOIN geojson ON fk_geojson = geojson.id `+
-                `WHERE ${queryParts.join(' AND ')}`;
+                `WHERE ${whereClause}`;
             db.execute(query, null, (err, results, fields) => {
                 if (err) {
                     console.log('ERROR', err);
