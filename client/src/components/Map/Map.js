@@ -24,7 +24,7 @@ function Map() {
             let { country_code: country, state, county } = element;
             if (country === 'US') {
                 if (county && state) {
-                    const geoJsonUrl = `/api/geojson?state=${state}&county=${county}`;
+                    const geoJsonUrl = `/api/geo/json?state=${state}&county=${county}`;
                     try {
                         map.data.loadGeoJson(geoJsonUrl);
                     } catch (e) {
